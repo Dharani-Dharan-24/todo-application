@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todos Studio</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar hidden" id="sidebar">
+        <div class="brand">
+          <img src="/static/mark.svg" alt="" class="brand-mark" />
+          <div>
+            <p class="eyebrow">Todos Studio</p>
+            <h1>Plan the day.</h1>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">Progress</span>
+          <strong id="progressText">0%</strong>
+          <div class="meter">
+            <span id="progressBar"></span>
+          </div>
+        </div>
+
+        <nav class="filters" aria-label="Todo filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="open">Open</button>
+          <button class="filter" data-filter="done">Done</button>
+        </nav>
+
+        <div class="profile-panel hidden" id="profilePanel">
+          <span class="stat-label">Signed in as</span>
+          <strong id="profileName">-</strong>
+          <small id="profileMeta">-</small>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <section class="auth-view" id="authView">
+          <div class="auth-copy">
+            <p class="eyebrow">Stay Organized, Stay Productive🔥.</p>
+            <h2>Design your Daily Tasks</h2>
+            <p>Sign in or create an account, then manage your tasks from a crisp dashboard 😉.</p>
+          </div>
+
+          <div class="auth-card">
+            <div class="tabs" role="tablist" aria-label="Authentication">
+              <button class="tab active" id="loginTab" type="button">Login</button>
+              <button class="tab" id="signupTab" type="button">Create account</button>
+            </div>
+
+            <form id="loginForm" class="form">
+              <label>
+                Username
+                <input name="username" autocomplete="username" required />
+              </label>
+              <label>
+                Password
+                <span class="password-field">
+                  <input name="password" type="password" autocomplete="current-password" required />
+                  <button class="password-toggle" type="button" aria-label="Show password" title="Show password">👁</button>
+                </span>
+              </label>
+              <button class="primary" type="submit">Sign in</button>
+            </form>
+
+            <form id="signupForm" class="form hidden">
+              <div class="grid-two">
+                <label>
+                  First name
+                  <input name="first_name" required />
+                </label>
+                <label>
+                  Last name
+                  <input name="last_name" required />
+                </label>
+              </div>
+              <label>
+                Email
+                <input name="email" type="email" required />
+              </label>
+              <label>
+                Username
+                <input name="username" autocomplete="username" required />
+              </label>
+              <label>
+                Phone
+                <input name="phone_number" minlength="10" maxlength="15" required />
+              </label>
+              <div class="grid-two">
+                <label>
+                  Role
+                  <select name="role">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </label>
+                <label>
+                  Password
+                  <span class="password-field">
+                    <input name="password" type="password" minlength="8" autocomplete="new-password" required />
+                    <button class="password-toggle" type="button" aria-label="Show password" title="Show password">👁</button>
+                  </span>
+                </label>
+              </div>
+              <button class="primary" type="submit">Create account</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="app-view hidden" id="appView">
+          <header class="topbar">
+            <div>
+              <p class="eyebrow" id="todayLabel">Today</p>
+              <h2>Your task board</h2>
+            </div>
+            <button class="ghost" id="logoutBtn" type="button">LOGOUT</button>
+          </header>
+
+          <form id="todoForm" class="composer">
+            <input name="title" placeholder="Task title" minlength="3" required />
+            <input name="description" placeholder="Short description" minlength="3" maxlength="60" required />
+            <select name="priority" aria-label="Priority">
+              <option value="1">Priority 1</option>
+              <option value="2">Priority 2</option>
+              <option value="3" selected>Priority 3</option>
+              <option value="4">Priority 4</option>
+              <option value="5">Priority 5</option>
+            </select>
+            <button class="primary" type="submit">Add task</button>
+          </form>
+
+          <div class="toolbar">
+            <label class="search">
+              <span>Search</span>
+              <input id="searchInput" placeholder="Find a task" />
+            </label>
+            <label class="sort">
+              <span>Sort</span>
+              <select id="sortSelect">
+                <option value="priority">Priority</option>
+                <option value="title">Title</option>
+                <option value="status">Status</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="todo-grid" id="todoGrid"></div>
+          <div class="empty-state hidden" id="emptyState">
+            <strong>No tasks here yet.</strong>
+            <span>Add one above or change your filter.</span>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
