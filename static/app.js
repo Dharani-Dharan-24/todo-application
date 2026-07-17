@@ -92,7 +92,7 @@ function formToObject(form) {
 async function loadProfile() {
   const user = await api("/user/todo");
   els.profileName.textContent = `${user.first_name || ""} ${user.last_name || ""}`.trim() || user.username;
-  els.profileMeta.textContent = `${user.username} - ${user.role}`;
+  els.profileMeta.textContent = user.username;
 }
 
 async function loadTodos() {

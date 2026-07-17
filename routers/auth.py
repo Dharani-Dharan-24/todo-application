@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
-from ..models import Users
+from models import Users
 from passlib.context import CryptContext
 from typing import Annotated
 from sqlalchemy.orm import Session
-from ..database import SessionLocal
+from database import SessionLocal
 from starlette import status
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from datetime import datetime, timedelta, timezone
@@ -30,7 +30,6 @@ class CreateUserRequest(BaseModel):
     first_name : str
     last_name : str
     password : str
-    role : str
     phone_number : str
 
 class Token(BaseModel):
@@ -95,7 +94,7 @@ async def create_user(create_user_request : CreateUserRequest, db : db_dependenc
         last_name = create_user_request.last_name,
         hashed_password = bcrypt_context.hash(create_user_request.password),
         phone_number = create_user_request.phone_number,
-        role = normalize_role(create_user_request.role),
+        role = "user",
         is_active = True
     )
 
@@ -110,7 +109,7 @@ async def login_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Dep
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate user")
     
-    token = create_access_token(user.username, user.id, normalize_role(user.role), timedelta(minutes=20))
+    token = create_access_token(user.username, user.id, normalize_role(user.role), timedelta(days=365))
     print(type(user.username))
     print(user.username)
 

@@ -1,12 +1,12 @@
 from typing import Annotated
 
 from starlette import status
-from ..models import Todos
+from models import Todos
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException, Path
-from ..database import SessionLocal
-from .auth import get_current_user
+from database import SessionLocal
+from routers.auth import get_current_user
 
 router = APIRouter(
     prefix="/admin",

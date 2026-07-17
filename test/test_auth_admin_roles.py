@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 
-from ..routers.admin import user_is_admin
-from ..routers.auth import normalize_role
+from routers.admin import user_is_admin
+from routers.auth import normalize_role
 
 
 def test_normalize_role_accepts_admin_with_extra_formatting():

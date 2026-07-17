@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Todos Studio</title>
-    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css?v=2" />
   </head>
   <body>
     <div class="shell">
@@ -47,7 +50,7 @@
           </div>
 
           <div class="auth-card">
-            <div class="tabs" role="tablist" aria-label="Authentication">
+            <div class="tabs auth-switch" role="tablist" aria-label="Authentication">
               <button class="tab active" id="loginTab" type="button">Login</button>
               <button class="tab" id="signupTab" type="button">Create account</button>
             </div>
@@ -86,17 +89,10 @@
                 Username
                 <input name="username" autocomplete="username" required />
               </label>
-              <label>
-                Phone
-                <input name="phone_number" minlength="10" maxlength="15" required />
-              </label>
               <div class="grid-two">
                 <label>
-                  Role
-                  <select name="role">
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                  </select>
+                  Phone
+                  <input name="phone_number" minlength="10" maxlength="15" required />
                 </label>
                 <label>
                   Password
@@ -158,6 +154,6 @@
     </div>
 
     <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
-    <script src="/static/app.js"></script>
+    <script src="/static/app.js?v=2"></script>
   </body>
 </html>
