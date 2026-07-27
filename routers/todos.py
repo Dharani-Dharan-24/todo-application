@@ -30,7 +30,7 @@ class Todo_request(BaseModel):
     priority : int = Field(gt = 0, lt = 6)
     complete : bool
 
-@router.get("/", status_code=status.HTTP_200_OK)
+@router.get("/todo", status_code=status.HTTP_200_OK)
 async def read_all(user : user_dependency, db : db_dependency):
     if user is None:
         raise HTTPException(status_code=401, detail='Authentication Failed')

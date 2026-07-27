@@ -96,7 +96,7 @@ async function loadProfile() {
 }
 
 async function loadTodos() {
-  state.todos = await api("/");
+  state.todos = await api("/todo");
   renderTodos();
 }
 
